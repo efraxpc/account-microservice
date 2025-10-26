@@ -1,8 +1,10 @@
 const express = require('express');
 const v1 = require('./routes/v1');
 const cors = require('cors');
-
+const consumerModule = require('./modules/kafkamodule');
 const app = express();
+
+consumerModule();
 
 // service
 app.use(express.json());

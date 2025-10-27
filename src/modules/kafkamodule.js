@@ -22,6 +22,14 @@ const consumerModule = async () => {
             const transaction = JSON.parse(message.value.toString());
             const accountId = transaction.accountId;
             try {
+
+                if(transaction.status === 'FRAUD') {
+                    await Account.findOneAndUpdate(
+                        { _id: accountId },
+                        { status: 'blocked' },
+                        { new: true }
+                    );
+                }
                 const blockedAccount = await Account.findOne({ accountId, status: { $ne: 'blocked' } });
 
                 if (!blockedAccount) {

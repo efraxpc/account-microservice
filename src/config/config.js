@@ -9,6 +9,7 @@ const envVarsSchema = Joi.object()
     KAFKA_BROKERS: Joi.string().required(),
     KAFKA_TOPIC: Joi.string().required(),
     KAFKA_GROUP_ID: Joi.string().required(),
+    SECRET_ACCESS_TOKEN: Joi.string().hex().required()
   })
   .unknown();
 
@@ -33,6 +34,9 @@ function createConfig(configPath) {
             brokers: envVars.KAFKA_BROKERS,
             topic: envVars.KAFKA_TOPIC,
             groupId: envVars.KAFKA_GROUP_ID,
+        },
+        jwt: {
+            accessTokenSecret: envVars.SECRET_ACCESS_TOKEN,
         },
     };
 }

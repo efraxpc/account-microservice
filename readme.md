@@ -1,7 +1,3 @@
-¡Absolutamente\! Aquí tienes el archivo **README** de tu microservicio de cuentas en inglés en formato Markdown (`.md`), listo para descargar y usar en tu repositorio de GitHub.
-
------
-
 # 🚀 Account Microservice (`account-microservice`)
 
 This is a **stateless** and **Express.js** based microservice that manages the CRUD operations for user accounts. This service is designed to be highly **scalable** and **reproducible** using Docker.

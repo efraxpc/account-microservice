@@ -2,13 +2,14 @@ const express = require('express');
 const v1 = require('./routes/v1');
 const cors = require('cors');
 const consumerModule = require('./modules/kafkamodule');
+const jwtVerifyMiddleware = require('./middlewares/verify');
 const app = express();
 
 consumerModule();
 
 // service
 app.use(express.json());
-
+app.use(jwtVerifyMiddleware);
 
 // V1 API
 app.use('/v1', v1);
@@ -18,5 +19,6 @@ const corsOptions = {
   optionsSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
+
 
 module.exports = app;

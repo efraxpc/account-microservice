@@ -14,7 +14,7 @@ const verifyJWT = (req, res, next) => {
   const token = authHeader.split(' ')[1];
   const configPath = path.join(__dirname, '../../configs/.env');
   const appConfig = createConfig(configPath);
-console.log(appConfig);
+
   jwt.verify(token, appConfig.jwt.accessTokenSecret, (err, decoded) => {
     if (err) {
       if (err.name === 'JsonWebTokenError') {

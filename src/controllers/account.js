@@ -1,7 +1,9 @@
 const accountService = require('../services/account');
+const { logger } = require('../log/logger');
 
 const getAccountById = async (req, res) => {
     const result = await accountService.getAccountById(req.params.id);
+    logger.info('getAccountById method called', { accountId: req.params.id })
 
     if (result) {
         res.status(200).json({ success: true, account: mapToResponse(result) });

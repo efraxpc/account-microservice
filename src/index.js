@@ -2,7 +2,7 @@ const path = require('path');
 const db = require('./db');
 const app = require('./app');
 const { createConfig } = require('./config/config');
-const { logger } = require('./log/logger');
+const { logger } = require('./log/logger-logstash');
 
 async function execute() {
     //sincrono
@@ -29,6 +29,7 @@ async function execute() {
     };
 
     const unexpectedError = (error) => {
+        console.error(error);
         logger.error('unhandled error', { stack: { error } });
         closeServer();
     };

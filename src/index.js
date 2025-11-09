@@ -5,17 +5,20 @@ const { createConfig } = require('./config/config');
 const { logger } = require('./log/logger-logstash');
 
 async function execute() {
-    //sincrono
+    logger.info('preparing account service ...');
+    
     const configPath = path.join(__dirname, '../configs/.env');
-    //sincrono
     const appConfig = createConfig(configPath);
 
-    await db.connect(appConfig);
-    //asincrono
-    const server = app.listen(appConfig.port, () => {
-        logger.info('account service started', { port: appConfig.port });
-    });
+    logger.info({configPath:configPath});
 
+    await db.connect(appConfig);
+
+    const port = process.env.PORT || appConfig.port;
+    const server = app.listen(port, () => {
+        logger.info('account service started',
+            { port: port });
+    });
     const closeServer = () => {
         if (server) {
             //asincrono

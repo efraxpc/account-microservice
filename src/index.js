@@ -3,10 +3,10 @@ const db = require('./db');
 const app = require('./app');
 const { createConfig } = require('./config/config');
 const { logger } = require('./log/logger-logstash');
-
+//teste
 async function execute() {
     logger.info('preparing account service ...');
-    
+
     const configPath = path.join(__dirname, '../configs/.env');
     const appConfig = createConfig(configPath);
 

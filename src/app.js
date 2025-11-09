@@ -11,6 +11,10 @@ consumerModule();
 app.use(express.json());
 app.use(jwtVerifyMiddleware);
 
+app.get('/welcome', (req, res) => {
+    res.send('<h1>Welcome to Express.js Application!</h1>');
+});
+
 // V1 API
 app.use('/v1', v1);
 
